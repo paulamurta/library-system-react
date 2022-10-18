@@ -1,8 +1,8 @@
-import { createGlobalStyle } from "styled-components";
-import Poppins from "../fonts/poppins-v20-latin-regular.woff2";
-import Poppins2 from "../fonts/poppins-v20-latin-regular.woff2";
-import RozhaWoff from "../fonts/rozha-one-v13-latin-regular.woff";
-import RozhaWoff2 from "../fonts/rozha-one-v13-latin-regular.woff2";
+import { createGlobalStyle } from 'styled-components';
+import Poppins from '../fonts/poppins-v20-latin-regular.woff2';
+import Poppins2 from '../fonts/poppins-v20-latin-regular.woff2';
+import RozhaWoff from '../fonts/rozha-one-v13-latin-regular.woff';
+import RozhaWoff2 from '../fonts/rozha-one-v13-latin-regular.woff2';
 
 const GlobalStyle = createGlobalStyle`
 

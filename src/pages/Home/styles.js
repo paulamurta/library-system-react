@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import books from "../../assets/books.jpg";
+import styled from 'styled-components';
+import books from '../../assets/books.jpg';
 
 export const Background = styled.div`
   display: flex;
@@ -47,7 +47,7 @@ export const Body = styled.div`
 
       .navBtn {
         font-weight: 400;
-        font-family: "Poppins";
+        font-family: 'Poppins';
         font-size: 0.8rem;
         color: var(--color-accent);
 

@@ -1,41 +1,37 @@
-import { createContext, useState } from "react";
-import { api } from "../api/api";
-import React from "react";
+import { createContext, useEffect, useState } from 'react';
+import { api } from '../api/api';
+import React from 'react';
+import toast from 'react-hot-toast';
 
 export const BooksContext = createContext({});
 
 export const BooksProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
+  const [foundBook, setFoundBook] = useState({});
+  const [search, setSearch] = useState('');
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    async function fetchBooks() {
+      try {
+        const { data } = await api.get('/books');
+        setBooks(data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    fetchBooks();
+  }, []);
 
   function postBook(data) {
     api
-      .post("/books", data)
+      .post('/books', data)
       .then((res) => {
         setBooks(...books, data);
+        toast.success('Book added to database!');
       })
       .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  function listBooks() {
-    api
-      .get("/books")
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  function listBookByIsbn(isbn) {
-    api
-      .get(`/books/${isbn}`)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
+        toast.error('Something went wrong!');
         console.log(err);
       });
   }
@@ -44,28 +40,35 @@ export const BooksProvider = ({ children }) => {
     api
       .delete(`/books/${isbn}`)
       .then((res) => {
+        toast.success('Book deleted from database!');
         const newBooks = books.filter((book) => book.isbn !== isbn);
         setBooks(newBooks);
       })
       .catch((err) => {
+        toast.error('Something went wrong!');
         console.log(err);
       });
   }
 
   function updateBook(data) {
     api
-      .put(`books/${data.isbn}`)
+      .patch(`books/${data.isbn}`, data)
       .then((res) => {
         const editedBooks = books.map((book) => {
-          if (book.isbn === res.data.isbn) {
+          if (book.isbn === data.isbn) {
             return res.data;
           } else {
             return book;
           }
         });
+        console.log(data);
+        toast.success('Book updated!');
+        setShowModal(false);
         setBooks(editedBooks);
       })
       .catch((err) => {
+        console.log(data);
+        toast.error('Something went wrong!');
         console.error(err);
       });
   }
@@ -75,8 +78,12 @@ export const BooksProvider = ({ children }) => {
       value={{
         books,
         setBooks,
-        listBooks,
-        listBookByIsbn,
+        foundBook,
+        setFoundBook,
+        search,
+        setSearch,
+        showModal,
+        setShowModal,
         postBook,
         updateBook,
         deleteBook,

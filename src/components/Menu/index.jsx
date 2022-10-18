@@ -1,6 +1,6 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { Picture } from "./styles";
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Picture } from './styles';
 
 const Menu = () => {
   const navigate = useNavigate();
@@ -10,7 +10,7 @@ const Menu = () => {
         <button
           className="homeBtn"
           onClick={() => {
-            navigate("/");
+            navigate('/');
           }}
         >
           Home
@@ -22,15 +22,15 @@ const Menu = () => {
         <button
           className="navBtn"
           onClick={() => {
-            navigate("/list");
+            navigate('/list');
           }}
         >
-          See all books
+          List all books
         </button>
         <button
           className="navBtn"
           onClick={() => {
-            navigate("/search");
+            navigate('/search');
           }}
         >
           Search by ISBN
@@ -38,23 +38,7 @@ const Menu = () => {
         <button
           className="navBtn"
           onClick={() => {
-            navigate("/edit");
-          }}
-        >
-          Edit by ISBN
-        </button>
-        <button
-          className="navBtn"
-          onClick={() => {
-            navigate("/delete");
-          }}
-        >
-          Delete by ISBN
-        </button>
-        <button
-          className="navBtn"
-          onClick={() => {
-            navigate("/post");
+            navigate('/post');
           }}
         >
           Post book

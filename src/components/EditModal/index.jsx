@@ -1,14 +1,15 @@
-import { Background, Container, Form, Book } from './styles';
+import { Container, Content } from './styles';
 import React from 'react';
-import Menu from '../../components/Menu';
 import { useContext } from 'react';
 import { BooksContext } from '../../contexts/BooksContext';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import schema from '../../validators/schema';
+import { motion } from 'framer-motion/dist/framer-motion';
+import { AiFillCloseCircle } from 'react-icons/ai';
 
-const PostBook = () => {
-  const { books, setBooks, postBook } = useContext(BooksContext);
+const EditModal = () => {
+  const { showModal, setShowModal, updateBook } = useContext(BooksContext);
 
   const {
     register,
@@ -17,12 +18,25 @@ const PostBook = () => {
   } = useForm({ resolver: yupResolver(schema) });
 
   return (
-    <>
-      <Background>
-        <Menu />
-        <Container>
-          <h1>Post book</h1>
-          <Form noValidate={true} onSubmit={handleSubmit(postBook)}>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
+      <Container>
+        <Content>
+          <div className="top">
+            <div className="button">
+              <button onClick={() => setShowModal(!showModal)}>
+                <AiFillCloseCircle />
+              </button>
+            </div>
+
+            <h1>Edit book</h1>
+          </div>
+
+          <form noValidate={true} onSubmit={handleSubmit(updateBook)}>
             <fieldset>
               <label htmlFor="isbn">ISBN:</label>
               <input
@@ -73,12 +87,14 @@ const PostBook = () => {
               />
             </fieldset>
 
-            <button type="submit">Post Book</button>
-          </Form>
-        </Container>
-      </Background>
-    </>
+            <section>
+              <button type="submit">Edit Book</button>
+            </section>
+          </form>
+        </Content>
+      </Container>
+    </motion.div>
   );
 };
 
-export default PostBook;
+export default EditModal;

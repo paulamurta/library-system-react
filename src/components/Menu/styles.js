@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import stacks from "../../assets/stacks.jpg";
+import styled from 'styled-components';
+import stacks from '../../assets/stacks.jpg';
 
 export const Picture = styled.div`
   flex: 3;
@@ -10,7 +10,7 @@ export const Picture = styled.div`
   background-image: url(${stacks});
   background-size: cover;
   height: 100%;
-  padding: 3vh;
+  padding: 2vh;
   gap: 2vh;
 
   div {
@@ -22,7 +22,7 @@ export const Picture = styled.div`
 
     .homeBtn {
       font-weight: 400;
-      font-family: "Poppins";
+      font-family: 'Poppins';
       color: var(--color-text-black);
       font-weight: 700;
       font-size: 1rem;
@@ -37,8 +37,8 @@ export const Picture = styled.div`
 
     .navBtn {
       font-weight: 400;
-      font-family: "Poppins";
-      font-size: 0.8rem;
+      font-family: 'Poppins';
+      font-size: 0.9rem;
       color: var(--color-text--dark);
 
       :hover {
