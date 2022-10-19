@@ -1,4 +1,4 @@
-# Library System React App
+# Library System - React App
 
 ### React APP for book search in database. 
 Both API and DB running on localhost
