@@ -1,7 +1,6 @@
 # Library System - React App
 
 ### React APP for book search in database. 
-Both API and DB running on localhost
 
 API: run at port 3333<br>
 REACT: run at port 3000<br>
